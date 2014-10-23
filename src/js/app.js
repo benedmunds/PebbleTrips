@@ -83,7 +83,7 @@ Pebble.addEventListener("ready", function() {
 
 Pebble.addEventListener("showConfiguration", function() {
 
-  var url = 'http://192.168.10.4/personal/apps/test_pebble/web/login.php';
+  var url = 'http://pebbletrips.com/login.php';
   console.log("showing configuration at " + url);
   Pebble.openURL(url);
 

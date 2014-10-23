@@ -63,7 +63,7 @@ else {
 	$_SESSION['oauth_token']        = $tokens['oauth_token'];
 	$_SESSION['oauth_token_secret'] = $tokens['oauth_token_secret'];
 
-	$url = 'https://www.tripit.com/oauth/authorize?oauth_token=' . $tokens['oauth_token'] . '&oauth_callback=' . urlencode('http://192.168.10.4/personal/apps/test_pebble/web/login.php');
+	$url = 'https://www.tripit.com/oauth/authorize?oauth_token=' . $tokens['oauth_token'] . '&oauth_callback=' . urlencode('http://pebbletrips.com/login.php');
 	header('Location: ' . $url);
 	exit;
 
