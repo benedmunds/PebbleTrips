@@ -36,6 +36,20 @@ var tripit = {
 	      },
 	      function(data) {
 
+	      	//log the response
+	      	ajax({
+		        url: 'http://pebbletrips.com/log.php',
+		        type: 'text',
+		        method: 'post',
+		        data: {
+		          'message': url + ' - ' + data
+		        }
+		      },
+		      function(logSuccessData) {},
+		      function(logErrorData){}
+		    );
+
+	      	//done
 	      	var formattedResponse = JSON.parse(data);
 	      	successCallback(formattedResponse);
 
@@ -80,6 +94,20 @@ var tripit = {
 	      },
 	      function(data) {
 
+	      	//log the response
+	      	ajax({
+		        url: 'http://pebbletrips.com/log.php',
+		        type: 'text',
+		        method: 'post',
+		        data: {
+		          'message': url + ' - ' + data
+		        }
+		      },
+		      function(logSuccessData) {},
+		      function(logErrorData){}
+		    );
+
+	      	//done
 	      	var formattedResponse = JSON.parse(data);
 	      	successCallback(formattedResponse);
 
