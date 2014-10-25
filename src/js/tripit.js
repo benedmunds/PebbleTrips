@@ -103,7 +103,10 @@ var tripit = {
 		          'message': url + ' - ' + data
 		        }
 		      },
-		      function(logSuccessData) {},
+		      function(logSuccessData) {
+		      	console.log('log response = ');
+		      	console.log(JSON.stringify(logSuccessData));
+		      },
 		      function(logErrorData){}
 		    );
 

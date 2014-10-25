@@ -1,7 +1,7 @@
 <?php
 
 //store the json to a file
-$store = fopen(__DIR__ . 'logs/' . date('Ymd') . '.txt', 'w');
+$store = fopen(__DIR__ . '/logs/' . date('Ymd') . '.txt', 'w');
 
 //error?
 if ($store === FALSE)

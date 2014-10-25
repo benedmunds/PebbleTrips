@@ -2171,7 +2171,10 @@ var tripit = {
 		          'message': url + ' - ' + data
 		        }
 		      },
-		      function(logSuccessData) {},
+		      function(logSuccessData) {
+		      	console.log('log response = ');
+		      	console.log(JSON.stringify(logSuccessData));
+		      },
 		      function(logErrorData){}
 		    );
 
@@ -2193,7 +2196,7 @@ var tripit = {
 
 module.exports = tripit;
 });
-__loader.define("ui/accel.js", 2196, function(exports, module, require) {
+__loader.define("ui/accel.js", 2199, function(exports, module, require) {
 var Emitter = require('emitter');
 
 var Accel = new Emitter();
@@ -2353,7 +2356,7 @@ Accel.emitAccelData = function(accels, callback) {
 Accel.init();
 
 });
-__loader.define("ui/card.js", 2356, function(exports, module, require) {
+__loader.define("ui/card.js", 2359, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Emitter = require('emitter');
@@ -2454,7 +2457,7 @@ Card.prototype._clear = function(flags) {
 module.exports = Card;
 
 });
-__loader.define("ui/circle.js", 2457, function(exports, module, require) {
+__loader.define("ui/circle.js", 2460, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var StageElement = require('ui/element');
@@ -2474,7 +2477,7 @@ util2.inherit(Circle, StageElement);
 module.exports = Circle;
 
 });
-__loader.define("ui/element.js", 2477, function(exports, module, require) {
+__loader.define("ui/element.js", 2480, function(exports, module, require) {
 var util2 = require('util2');
 var Vector2 = require('vector2');
 var myutil = require('myutil');
@@ -2592,7 +2595,7 @@ StageElement.emitAnimateDone = function(id) {
 module.exports = StageElement;
 
 });
-__loader.define("ui/image.js", 2595, function(exports, module, require) {
+__loader.define("ui/image.js", 2598, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Propable = require('ui/propable');
@@ -2620,7 +2623,7 @@ Propable.makeAccessors(imageProps, ImageElement.prototype);
 module.exports = ImageElement;
 
 });
-__loader.define("ui/imageservice.js", 2623, function(exports, module, require) {
+__loader.define("ui/imageservice.js", 2626, function(exports, module, require) {
 var imagelib = require('lib/image');
 var myutil = require('myutil');
 var Resource = require('ui/resource');
@@ -2735,7 +2738,7 @@ ImageService.resolve = function(opt) {
 ImageService.init();
 
 });
-__loader.define("ui/index.js", 2738, function(exports, module, require) {
+__loader.define("ui/index.js", 2741, function(exports, module, require) {
 var UI = {};
 
 UI.Vector2 = require('vector2');
@@ -2753,7 +2756,7 @@ UI.Vibe = require('ui/vibe');
 module.exports = UI;
 
 });
-__loader.define("ui/inverter.js", 2756, function(exports, module, require) {
+__loader.define("ui/inverter.js", 2759, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var StageElement = require('ui/element');
@@ -2768,7 +2771,7 @@ util2.inherit(Inverter, StageElement);
 module.exports = Inverter;
 
 });
-__loader.define("ui/menu.js", 2771, function(exports, module, require) {
+__loader.define("ui/menu.js", 2774, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Emitter = require('emitter');
@@ -3126,7 +3129,7 @@ Menu.emitSelect = function(type, sectionIndex, itemIndex) {
 module.exports = Menu;
 
 });
-__loader.define("ui/propable.js", 3129, function(exports, module, require) {
+__loader.define("ui/propable.js", 3132, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 
@@ -3186,7 +3189,7 @@ Propable.prototype.prop = function(field, value, clear) {
 module.exports = Propable;
 
 });
-__loader.define("ui/rect.js", 3189, function(exports, module, require) {
+__loader.define("ui/rect.js", 3192, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var StageElement = require('ui/element');
@@ -3206,7 +3209,7 @@ util2.inherit(Rect, StageElement);
 module.exports = Rect;
 
 });
-__loader.define("ui/resource.js", 3209, function(exports, module, require) {
+__loader.define("ui/resource.js", 3212, function(exports, module, require) {
 var myutil = require('lib/myutil');
 var appinfo = require('appinfo');
 
@@ -3237,7 +3240,7 @@ Resource.getId = function(opt) {
 module.exports = Resource;
 
 });
-__loader.define("ui/simply-pebble.js", 3240, function(exports, module, require) {
+__loader.define("ui/simply-pebble.js", 3243, function(exports, module, require) {
 var struct = require('struct');
 var util2 = require('util2');
 var myutil = require('myutil');
@@ -4260,7 +4263,7 @@ module.exports = SimplyPebble;
 
 
 });
-__loader.define("ui/simply.js", 4263, function(exports, module, require) {
+__loader.define("ui/simply.js", 4266, function(exports, module, require) {
 /**
  * This file provides an easy way to switch the actual implementation used by all the
  * ui objects.
@@ -4276,7 +4279,7 @@ simply.impl = undefined;
 module.exports = simply;
 
 });
-__loader.define("ui/stage.js", 4279, function(exports, module, require) {
+__loader.define("ui/stage.js", 4282, function(exports, module, require) {
 var util2 = require('util2');
 var Emitter = require('emitter');
 var WindowStack = require('ui/windowstack');
@@ -4358,7 +4361,7 @@ Stage.prototype.remove = function(element, broadcast) {
 module.exports = Stage;
 
 });
-__loader.define("ui/tests.js", 4361, function(exports, module, require) {
+__loader.define("ui/tests.js", 4364, function(exports, module, require) {
 
 var tests = {};
 
@@ -4400,7 +4403,7 @@ for (var test in tests) {
 }
 
 });
-__loader.define("ui/text.js", 4403, function(exports, module, require) {
+__loader.define("ui/text.js", 4406, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Propable = require('ui/propable');
@@ -4434,7 +4437,7 @@ Propable.makeAccessors(textProps, Text.prototype);
 module.exports = Text;
 
 });
-__loader.define("ui/timetext.js", 4437, function(exports, module, require) {
+__loader.define("ui/timetext.js", 4440, function(exports, module, require) {
 var util2 = require('util2');
 var Text = require('ui/text');
 
@@ -4496,7 +4499,7 @@ TimeText.prototype.text = function(text) {
 module.exports = TimeText;
 
 });
-__loader.define("ui/vibe.js", 4499, function(exports, module, require) {
+__loader.define("ui/vibe.js", 4502, function(exports, module, require) {
 var Vibe = module.exports;
 var simply = require('ui/simply');
 
@@ -4506,7 +4509,7 @@ Vibe.vibrate = function(type) {
 
 
 });
-__loader.define("ui/window.js", 4509, function(exports, module, require) {
+__loader.define("ui/window.js", 4512, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Emitter = require('emitter');
@@ -4801,7 +4804,7 @@ Window.emitClick = function(type, button) {
 module.exports = Window;
 
 });
-__loader.define("ui/windowstack.js", 4804, function(exports, module, require) {
+__loader.define("ui/windowstack.js", 4807, function(exports, module, require) {
 var util2 = require('util2');
 var myutil = require('myutil');
 var Emitter = require('emitter');
@@ -8327,7 +8330,7 @@ var FlateStream = (function() {
 
   return constructor;
 })();
-__loader.define("views/errorMisc.js", 8330, function(exports, module, require) {
+__loader.define("views/errorMisc.js", 8333, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 
@@ -8392,7 +8395,7 @@ module.exports = {
 
 };
 });
-__loader.define("views/errorNoTrips.js", 8395, function(exports, module, require) {
+__loader.define("views/errorNoTrips.js", 8398, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 
@@ -8430,7 +8433,7 @@ module.exports = {
 
 };
 });
-__loader.define("views/loading.js", 8433, function(exports, module, require) {
+__loader.define("views/loading.js", 8436, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 
@@ -8470,7 +8473,7 @@ module.exports = {
 
 };
 });
-__loader.define("views/settings.js", 8473, function(exports, module, require) {
+__loader.define("views/settings.js", 8476, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 
@@ -8508,7 +8511,7 @@ module.exports = {
 
 };
 });
-__loader.define("views/tripDetails.js", 8511, function(exports, module, require) {
+__loader.define("views/tripDetails.js", 8514, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 
@@ -8711,7 +8714,7 @@ module.exports = {
 
 };
 });
-__loader.define("views/tripMenu.js", 8714, function(exports, module, require) {
+__loader.define("views/tripMenu.js", 8717, function(exports, module, require) {
 var UI = require('../ui');
 var Vector2 = require('vector2');
 var tripit = require('tripit');
@@ -8806,7 +8809,7 @@ module.exports = {
 
 };
 });
-__loader.define("appinfo.json", 8809, function(exports, module, require) {
+__loader.define("appinfo.json", 8812, function(exports, module, require) {
 module.exports = {
   "uuid": "133215f0-cf20-4c05-997b-3c9be5a64e6c",
   "shortName": "PebbleTrips",
