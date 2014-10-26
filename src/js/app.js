@@ -8,6 +8,7 @@ function isEmpty(object) { for(var i in object) { return false; } return true; }
 
  var main = function() {
 
+console.log('IN MAIN()');
   //init
   var UI = require('ui');
   var Vector2 = require('vector2');
@@ -17,9 +18,14 @@ function isEmpty(object) { for(var i in object) { return false; } return true; }
   var config = JSON.parse(window.localStorage.getItem('config'));
 
 
+      console.log('before SETTINGS SCREEN');
+      console.log(typeof config);
+      console.log(JSON.stringify(config));
+
   //if not configured yet display an error message on the watch
   if (typeof config === 'undefined' || isEmpty(config)) {
 
+      console.log('OPENING SETTINGS SCREEN');
       var settings = require('views/settings');
       settings.build();
 
@@ -95,9 +101,15 @@ Pebble.addEventListener("webviewclosed", function(e) {
   console.log("configuration closed");
   if (e.response != '') {
 
-    var options = JSON.parse(decodeURIComponent(e.response));
-    console.log("storing options: " + JSON.stringify(options));
-    window.localStorage.setItem('config', JSON.stringify(options));
+    try {
+      var options = JSON.parse(decodeURIComponent(e.response));
+
+      if (options !== 'undefined') {
+        console.log("storing options: " + JSON.stringify(options));
+        window.localStorage.setItem('config', JSON.stringify(options));
+      }
+    }
+    catch(e){}
 
     main();
 
