@@ -8,7 +8,6 @@ function isEmpty(object) { for(var i in object) { return false; } return true; }
 
  var main = function() {
 
-console.log('IN MAIN()');
   //init
   var UI = require('ui');
   var Vector2 = require('vector2');
@@ -17,10 +16,6 @@ console.log('IN MAIN()');
 
   var config = JSON.parse(window.localStorage.getItem('config'));
 
-
-      console.log('before SETTINGS SCREEN');
-      console.log(typeof config);
-      console.log(JSON.stringify(config));
 
   //if not configured yet display an error message on the watch
   if (typeof config === 'undefined' || isEmpty(config)) {

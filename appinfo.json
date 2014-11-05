@@ -3,8 +3,8 @@
   "shortName": "PebbleTrips",
   "longName": "TripIt for Pebble",
   "companyName": "BenEdmunds",
-  "versionCode": 2,
-  "versionLabel": "2",
+  "versionCode": 3,
+  "versionLabel": "3",
   "capabilities": [ "configurable" ],
   "watchapp": {
     "watchface": false

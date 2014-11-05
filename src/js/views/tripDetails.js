@@ -49,131 +49,104 @@ module.exports = {
         });
 
 
-        var yPos = 0;
-
-        var title = new UI.Text({
-          position: new Vector2(0, yPos),
-          size: new Vector2(144, 30),
-          font: 'gothic-24-bold',
-          text: data.Trip.primary_location,
-          textAlign: 'center'
-        });
-        wind.add(title);
-
-
-        yPos += newSectionYSpace;
-        var subTitle = new UI.Text({
-          position: new Vector2(0, yPos),
-          size: new Vector2(144, 30),
-          font: 'gothic-18-bold',
-          text: formattedStartDate + ' to ' + formattedEndDate,
-          textAlign: 'center'
-        });
-        wind.add(subTitle);
         body += formattedStartDate + ' to ' + formattedEndDate + '\n';
-
         body += '\r\n';
 
-        if (typeof data.AirObject !== 'undefined' && typeof data.AirObject.Segment !== 'undefined' && data.AirObject.Segment.length > 0) {
 
-          for (var i=0; i<data.AirObject.Segment.length; i++) {
+        var airExists = typeof data.AirObject !== 'undefined' && typeof data.AirObject.Segment !== 'undefined';
+        var lodgingExists = typeof data.LodgingObject !== 'undefined' && typeof data.LodgingObject.display_name !== 'undefined' && data.LodgingObject.display_name.length > 0;
+        var carExists = typeof data.CarObject !== 'undefined' && typeof data.CarObject.display_name !== 'undefined' && data.CarObject.display_name.length > 0;
 
-            //flight
-            yPos += 25;
-            var flight = new UI.Text({
-              position: new Vector2(5, yPos),
-              size: new Vector2(144, 30),
-              font: 'gothic-14-bold',
-              text: data.AirObject.Segment[i].start_airport_code +' to '+ data.AirObject.Segment[i].end_airport_code,
-              textAlign: 'left'
-            });
-            wind.add(flight);
-            body += data.AirObject.Segment[i].start_airport_code +' to '+ data.AirObject.Segment[i].end_airport_code + '\n';
+        if (airExists || lodgingExists || carExists) {
 
-            if (typeof data.AirObject.Segment[i].Status.flight_status !== 'undefined') {
-              yPos += newRowYSpace;
-              //status
-              var status = new UI.Text({
-                position: new Vector2(5, yPos),
-                size: new Vector2(144, 30),
-                font: 'gothic-14-bold',
-                text: 'Status: ' + flightStatuses[data.AirObject.Segment[i].Status.flight_status],
-                textAlign: 'left'
-              });
-              wind.add(status);
-              body += 'Status: ' + flightStatuses[data.AirObject.Segment[i].Status.flight_status] + '\n';
+          if (airExists) {
+
+            body += 'Flight: ' + '\n';
+
+
+            //make the air segments an array if its singular
+            if (typeof data.AirObject.Segment.length === 'undefined') {
+              data.AirObject.Segment = [data.AirObject.Segment];
             }
 
+            for (var i=0; i<data.AirObject.Segment.length; i++) {
 
-            if (typeof data.AirObject.Segment[i].Status.departure_gate !== 'undefined') {
-              yPos += newRowYSpace;
-              var departGate = new UI.Text({
-                position: new Vector2(5, yPos),
-                size: new Vector2(144, 30),
-                font: 'gothic-14-bold',
-                text: 'Gate: ' + data.AirObject.Segment[i].Status.departure_gate,
-                textAlign: 'left'
-              });
-              wind.add(departGate);
-              body += 'Gate: ' + data.AirObject.Segment[i].Status.departure_gate + '\n';
-            }
+              //flight
+              body += data.AirObject.Segment[i].start_airport_code +' to '+ data.AirObject.Segment[i].end_airport_code + '\n';
 
-            yPos += newRowYSpace;
-            var duration = new UI.Text({
-              position: new Vector2(5, yPos),
-              size: new Vector2(144, 30),
-              font: 'gothic-14-bold',
-              text: 'Duration: ' + data.AirObject.Segment[i].duration,
-              textAlign: 'left'
-            });
-            wind.add(duration);
-            body += 'Duration: ' + data.AirObject.Segment[i].duration + '\n';
-
-
-            //departure
-            var segmentDepartureDatetimeHour = data.AirObject.Segment[i].StartDateTime.time.substring(0, 2);
-            var segmentDepartureDatetimeMin = data.AirObject.Segment[i].StartDateTime.time.substring(3, 5);
-            var segmentDepartureDatetimeAmPm = 'AM';
-
-            if (segmentDepartureDatetimeHour > 11) {
-              segmentDepartureDatetimeHour = segmentDepartureDatetimeHour > 12 ? segmentDepartureDatetimeHour - 12 : segmentDepartureDatetimeHour;
-              segmentDepartureDatetimeAmPm = 'PM';
-            }
-
-            yPos += newRowYSpace;
-            var depart = new UI.Text({
-              position: new Vector2(5, yPos),
-              size: new Vector2(144, 30),
-              font: 'gothic-14-bold',
-              text: 'Depart: ' + segmentDepartureDatetimeHour +':'+ segmentDepartureDatetimeMin + ' ' + segmentDepartureDatetimeAmPm,
-              textAlign: 'left'
-            });
-            wind.add(depart);
-            body += 'Depart: ' + segmentDepartureDatetimeHour +':'+ segmentDepartureDatetimeMin + ' ' + segmentDepartureDatetimeAmPm + '\n';
-
-
-            //arrival
-            if (typeof data.AirObject.Segment[i].EndDateTime !== 'undefined' && typeof data.AirObject.Segment[i].EndDateTime.time !== 'undefined') {
-              var segmentArrivalDatetimeHour = data.AirObject.Segment[i].EndDateTime.time.substring(0, 2);
-              var segmentArrivalDatetimeMin = data.AirObject.Segment[i].EndDateTime.time.substring(3, 5);
-              var segmentArrivalDatetimeAmPm = 'AM';
-
-              if (segmentArrivalDatetimeHour > 11) {
-                segmentArrivalDatetimeHour = segmentArrivalDatetimeHour > 12 ? segmentArrivalDatetimeHour - 12 : segmentArrivalDatetimeHour;
-                segmentArrivalDatetimeAmPm = 'PM';
+              if (typeof data.AirObject.Segment[i].Status.flight_status !== 'undefined') {
+                body += 'Status: ' + flightStatuses[data.AirObject.Segment[i].Status.flight_status] + '\n';
               }
 
-              yPos += newRowYSpace;
-              var arrive = new UI.Text({
-                position: new Vector2(5, yPos),
-                size: new Vector2(144, 30),
-                font: 'gothic-14-bold',
-                text: 'Arrive: ' + segmentArrivalDatetimeHour +':'+ segmentArrivalDatetimeMin + ' ' + segmentArrivalDatetimeAmPm,
-                textAlign: 'left'
-              });
-              wind.add(arrive);
-              body += 'Arrive: ' + segmentArrivalDatetimeHour +':'+ segmentArrivalDatetimeMin + ' ' + segmentArrivalDatetimeAmPm;
+
+              if (typeof data.AirObject.Segment[i].Status.departure_gate !== 'undefined') {
+                body += 'Gate: ' + data.AirObject.Segment[i].Status.departure_gate + '\n';
+              }
+
+              body += 'Duration: ' + data.AirObject.Segment[i].duration + '\n';
+
+
+              //departure
+              var segmentDepartureDatetimeHour = data.AirObject.Segment[i].StartDateTime.time.substring(0, 2);
+              var segmentDepartureDatetimeMin = data.AirObject.Segment[i].StartDateTime.time.substring(3, 5);
+              var segmentDepartureDatetimeAmPm = 'AM';
+
+              if (segmentDepartureDatetimeHour > 11) {
+                segmentDepartureDatetimeHour = segmentDepartureDatetimeHour > 12 ? segmentDepartureDatetimeHour - 12 : segmentDepartureDatetimeHour;
+                segmentDepartureDatetimeAmPm = 'PM';
+              }
+
+              body += 'Depart: ' + segmentDepartureDatetimeHour +':'+ segmentDepartureDatetimeMin + ' ' + segmentDepartureDatetimeAmPm + '\n';
+
+
+              //arrival
+              if (typeof data.AirObject.Segment[i].EndDateTime !== 'undefined' && typeof data.AirObject.Segment[i].EndDateTime.time !== 'undefined') {
+                var segmentArrivalDatetimeHour = data.AirObject.Segment[i].EndDateTime.time.substring(0, 2);
+                var segmentArrivalDatetimeMin = data.AirObject.Segment[i].EndDateTime.time.substring(3, 5);
+                var segmentArrivalDatetimeAmPm = 'AM';
+
+                if (segmentArrivalDatetimeHour > 11) {
+                  segmentArrivalDatetimeHour = segmentArrivalDatetimeHour > 12 ? segmentArrivalDatetimeHour - 12 : segmentArrivalDatetimeHour;
+                  segmentArrivalDatetimeAmPm = 'PM';
+                }
+
+                body += 'Arrive: ' + segmentArrivalDatetimeHour +':'+ segmentArrivalDatetimeMin + ' ' + segmentArrivalDatetimeAmPm;
+              }
+
+              body += '\r\n';
+              body += '\r\n';
+
+          }
+
+        }
+
+
+        if (carExists) {
+
+            //list Rental Car info
+            body += 'Rental Car: ' + '\n';
+            body += data.CarObject.display_name + '\n';
+            body += 'Conf #:' + '\n';
+            body += data.CarObject.booking_site_conf_num + '\n';
+
+            body += '\r\n';
+            body += '\r\n';
+
+        }
+
+
+        if (lodgingExists) {
+
+            //list Hotel info
+            body += 'Hotel: ' + '\n';
+            body += data.LodgingObject.display_name + '\n';
+
+            if (typeof data.LodgingObject.booking_site_conf_num !== 'undefined') {
+              body += 'Conf #:' + '\n';
+              body += data.LodgingObject.booking_site_conf_num + '\n';
             }
+
+            body += data.LodgingObject.Address.address + '\n';
 
             body += '\r\n';
             body += '\r\n';
