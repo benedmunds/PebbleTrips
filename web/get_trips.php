@@ -1,7 +1,7 @@
 <?php
 
-$oauth_consumer_key    = '1923c33a543a1222bedf5483e76cfb4c5a036c22';
-$oauth_consumer_secret = 'e226d3c0992d5e1c1f15639bb79e43f9d7997242';
+$oauth_consumer_key    = '';
+$oauth_consumer_secret = '';
 
 session_start();
 
